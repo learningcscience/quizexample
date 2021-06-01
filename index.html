@@ -107,6 +107,16 @@ html {
 }
   
   
+
+/***************************************************************************************/	
+/***************************************************************************************/
+/********************************Style for Radio Buttons********************************/
+/***************************************************************************************/
+/***************************************************************************************/
+	
+	
+	
+	
   
   /* The container */
 .container {
@@ -195,31 +205,30 @@ html {
   </div>
 
   <div class="col-6 col-s-9">
-    
-    
-    
-<h1 id="question"></h1>
-<label class="container">
-  <span id="option1"></span>
-  <input type="radio" name="radio">
-  <span class="checkmark"></span>
-</label>
-<label class="container">
-  <span id="option2"></span>
-  <input type="radio" name="radio">
-  <span class="checkmark"></span>
-</label>
-<label class="container">
-  <span id="option3"></span>
-  <input type="radio" name="radio">
-  <span class="checkmark"></span>
-</label>
-<label class="container">
-  <span id="option4"></span>
-  <input type="radio" name="radio">
-  <span class="checkmark"></span>
-</label>
-    
+
+
+	<h1 id="question"></h1>
+	<label class="container">
+	  <span id="option1"></span>
+	  <input type="radio" name="radio">
+	  <span class="checkmark"></span>
+	</label>
+	<label class="container">
+	  <span id="option2"></span>
+	  <input type="radio" name="radio">
+	  <span class="checkmark"></span>
+	</label>
+	<label class="container">
+	  <span id="option3"></span>
+	  <input type="radio" name="radio">
+	  <span class="checkmark"></span>
+	</label>
+	<label class="container">
+	  <span id="option4"></span>
+	  <input type="radio" name="radio">
+	  <span class="checkmark"></span>
+	</label>
+
     
   </div>
 
@@ -235,7 +244,6 @@ html {
       <p>This is heading content.</p>
       
       
-      
     </div>
   </div>
 </div>
@@ -247,9 +255,11 @@ html {
   <script>
   
       
+	  
+	  
     let questions = ["What is the tallest mountain of the world?", "What is the full form of www?", "What do you use to create a webpage?"];
     
-    let options = [["Everest", "K2", "Annapurna", "Gauri Sankar"], ["world wide web", "white white white", "world wide world", "white world white"], ["HTML", "Java", "Lua", "Paint"]];
+    let options = [["Annapurna", "Everest", "K2", "Gauri Sankar"], ["world wide web", "white white white", "world wide world", "white world white"], [ "Java", "Lua", "Paint", "HTML"]];
     
     let correctAnswers = ["Everest", "world wide web", "HTML"];
     
@@ -257,11 +267,79 @@ html {
     let questionIndex = 0;
     
     
+	  
+    loadQuestion(questionIndex);
     
-    
-      
-    var optionsctn = document.querySelectorAll("input[type=radio]");
+    addClickEventsToOptions();
+	
+	  
 
+	  
+	  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	  /////////////////////////////////HELPER FUNCTIONS//////////////////////////////////////////////////////////////////////////
+	  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	  
+	  
+	  
+	  
+	function addClickEventsToOptions(){
+		
+
+	    let optionsctn = document.querySelectorAll("input[type=radio]");
+
+	      for (let i = 0; i < optionsctn.length; i++) {
+		  optionsctn[i].addEventListener('click', function(ev){
+
+		    let correctAns = correctAnswers[questionIndex];
+		    let selectedAns = options[questionIndex][getSelectedOptionIndex(ev.target)]; 	  
+			  
+			  
+		    if( selectedAns == correctAns ){
+
+		      alert("correct");
+
+		    }
+		    else{
+
+		      alert("wrong");
+		    }
+
+
+		    //move to next question	  
+		    questionIndex += 1;
+
+
+			  
+		    //if there is no more question then show the first question again	  
+		    if(questionIndex >= questions.length ){
+
+		      questionIndex = 0;
+
+		    }
+
+
+		    //show next question	  
+		    loadQuestion(questionIndex);
+			  
+		    //remove check from radio buttons	  
+		    resetOptions();
+
+
+		  });
+	      }
+
+
+		
+		
+		
+		
+	}
+	  
+	  
+	  
+	  
     
     
     
@@ -290,51 +368,10 @@ html {
               }
             }
       
-          
-      
     }
     
     
     
-      
-      for (var i = 0; i < optionsctn.length; i++) {
-          optionsctn[i].addEventListener('click', function(ev){
-            
-            
-            if(correctAnswers[questionIndex] == options[questionIndex][getSelectedOptionIndex(ev.target)]){
-              
-              alert("correct");
-              
-            }
-            else{
-              
-              alert("wrong");
-            }
-            
-            
-            
-            
-            
-            questionIndex += 1;
-            
-            
-            if(questionIndex >= questions.length ){
-              
-              questionIndex = 0;
-              
-            }
-            
-            
-            loadQuestion(questionIndex);
-            
-            
-            
-            
-            resetOptions();
-            
-            
-          });
-      }
     
     function loadQuestion(index){
       
@@ -355,7 +392,6 @@ html {
     }
     
     
-    loadQuestion(questionIndex);
     
     
     
