@@ -255,6 +255,11 @@ html {
   <script>
   
       
+
+    //select all radio buttons	  
+    let optionsctn = document.querySelectorAll("input[type=radio]");
+
+	  
 	  
 	  
     let questions = ["What is the tallest mountain of the world?", "What is the full form of www?", "What do you use to create a webpage?"];
@@ -287,7 +292,6 @@ html {
 	function addClickEventsToOptions(){
 		
 
-	    let optionsctn = document.querySelectorAll("input[type=radio]");
 
 	      for (let i = 0; i < optionsctn.length; i++) {
 		  optionsctn[i].addEventListener('click', function(ev){
